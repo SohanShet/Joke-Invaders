@@ -145,7 +145,16 @@ function onInput(e)
 
 function gameOver()
 {
-    $('#game-over-score-field').text($('#score-field').text());
+    let currentScore = Number($('#score-field').text());
+    let highScore = Number(localStorage.getItem('jokeInvaderHighScore')) || 0;
+    
+    if (currentScore > highScore) {
+        highScore = currentScore;
+        localStorage.setItem('jokeInvaderHighScore', highScore);
+    }
+
+    $('#game-over-score-field').text(currentScore);
+    $('#game-over-highscore-field').text(highScore);
     $('#game').hide();
     $('#game-over-screen').show();
 
@@ -221,6 +230,10 @@ function startGame()
     let joker = setInterval(addJokesToBoard, difficultyTimeInterval);
     $('#typing-field').on('keyup', onInput);
     $('#score-field').text('0');
+
+    let highScore = Number(localStorage.getItem('jokeInvaderHighScore')) || 0;
+    $('#high-score-field').text(highScore);
+
     gameLoop(joker);
 }
 

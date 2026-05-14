@@ -91,30 +91,45 @@ body{
     position: relative; /* hack so that game-over-line remains in normal flow under this */
 }
 
-#controls{
+#controls {
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    padding: 7.5rem;
-    padding-bottom: 0;
-    font-weight: bold;
-    text-shadow: 0 0 15px;
-    
-    background-image: url('assets/dashboard.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+    width: 100%;
+    max-width: 800px;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.9) 100%);
+    box-sizing: border-box;
 }
 
-#game-over-line{
+#game-over-line {
     position: absolute;
     top: 30em;
     width: 100%;
-    border-color: white;
+    border-color: red;
+    box-shadow: 0 0 10px red;
 }
 
-.target{
+#game-over-line::after {
+    content: "DEAD LINE";
+    position: absolute;
+    color: red;
+    font-size: 1.2rem;
+    font-weight: bold;
+    top: -0.7em;
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: 0 0 5px black, 0 0 10px red;
+    background-color: rgba(0,0,0,0.5);
+    padding: 0 10px;
+    border-radius: 5px;
+}
+
+.target {
     background-image: url('assets/crosshair.png');
     background-repeat: no-repeat;
     background-size: contain;
@@ -122,56 +137,46 @@ body{
     background-blend-mode:darken;
 }
 
-#typing-field{
-    background-color: rgba(0,0,0,0.1); 
+.score-container, #target-field-container {
+    color: cyan;
+    font-weight: bold;
+    text-shadow: 0 0 10px cyan;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.audio-btns {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+#score-field, #high-score-field, #target-field {
+    font-family: 'digital';
+    font-size: 1.5em;
+    margin-top: 0.2rem;
+}
+
+.high-score {
+    color: gold;
+    text-shadow: 0 0 10px gold;
+}
+
+#typing-field {
+    background-color: rgba(0,255,255,0.1); 
     color: lime;
     outline: none;
-    border: none;
+    border: 2px solid rgba(0,255,255,0.5);
     border-radius: 0.5em;
-    height: 2em;
-    max-width: 11em;
-    position: relative;
-    bottom: 1.4em;
-    font-size: 1.1rem;
+    height: 2.5em;
+    width: 40%;
+    font-size: 1.5rem;
     text-align: center;
     text-shadow: inherit;
     font-weight: inherit;
-    box-shadow: 0 0 15px cyan;
-}
-
-#score-field{
-    position: absolute;
-    top: 5%;
-    left: 10%;
-    color: cyan;
-    font-family: 'digital';
-    font-size: 1.3em;
-}
-
-#target-field{
-    position: absolute;
-    top: 5%;
-    left: 70%;
-    color: cyan;
-}
-
-@media screen and (max-width:800px){
-    #controls{
-	padding: 4rem;
-	padding-bottom: 0;
-	font-size: 0.9rem;
-    }
-    #typing-field{
-	bottom: 0.5em;
-	height: 1.5em;
-	max-width: 7em;
-    }
-    #score-field{
-	top: 2%;
-    }    
-    #target-field{
-	top: 2%;
-    }
+    box-shadow: 0 0 15px cyan, inset 0 0 10px cyan;
 }
 
 #game-over-screen{
@@ -231,23 +236,14 @@ body{
 
 #playPauseBtn,
 #soundEffectBtn{
-    position:absolute;
+    position: relative;
     color: white;
     border: none;
     background-color:transparent;
-    width: 3em;
-    height: 3em;
+    width: 2rem;
+    height: 2rem;
     background-size: cover;
-}
-
-#playPauseBtn{
-    bottom: 1vw;
-    left: 1vw;    
-}
-
-#soundEffectBtn{
-    bottom: 1vw;
-    left: calc(1vw + 50px);    
+    cursor: pointer;
 }
 
 #soundEffectBtn.on{
@@ -295,29 +291,26 @@ body{
     }
 
     #controls {
-        padding: 3rem 1rem 0 1rem;
-        width: 90%;
-        background-size: 100% 100%;
+        padding: 0.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        background: rgba(0,0,0,0.85);
+    }
+
+    .score-container {
+        font-size: 1rem;
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    #target-field-container {
+        display: none;
     }
 
     #typing-field {
-        height: 1.5em;
-        max-width: 6em;
-        font-size: 1rem;
-        bottom: 0.2em;
-    }
-
-    #score-field {
-        top: 5%;
-        left: 5%;
-        font-size: 1.1em;
-    }
-
-    #target-field {
-        top: 5%;
-        left: auto;
-        right: 5%;
-        font-size: 0.9em;
+        height: 2em;
+        width: 80%;
+        font-size: 1.2rem;
     }
 
     #game-over-text {
@@ -329,11 +322,7 @@ body{
     }
     
     #playPauseBtn, #soundEffectBtn {
-        width: 2.5em;
-        height: 2.5em;
-    }
-    
-    #soundEffectBtn {
-        left: calc(1vw + 40px);
+        width: 1.8rem;
+        height: 1.8rem;
     }
 }
