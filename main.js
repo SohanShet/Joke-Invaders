@@ -21,6 +21,7 @@ let difficultyTimeInterval=18000;
 
 function fetchJokes()
 {
+    /* 
     fetch("https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single&amount=10")
 	.then((response)=> response.json())
 	.then((data)=>{	    
@@ -43,6 +44,23 @@ function fetchJokes()
 	}).catch((err)=> {
 	    alert('There seems to be some error🙁\nTry checking your Internet connection and Refresh');
 	});
+    */
+
+    // Fetch 10 random jokes from the local dataset
+    for (let i = 0; i < 10; i++) {
+        let randomJoke = Jokes[Math.floor(Math.random() * Jokes.length)];
+        let joke = randomJoke.joke;
+        
+        joke= joke.replace('“','"');
+        joke= joke.replace('”','"');
+        joke= joke.replace("‘","'");
+        joke= joke.replace("’","'");
+        joke= joke.replace("ö","o");
+        
+        let arr = joke.split(/\s+/);
+        if(arr.length<=28)
+            jokePool.push(joke);
+    }
 }
 
 function addJokesToBoard()

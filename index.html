@@ -1,64 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joke Invaders</title>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js" defer></script>
-    <script src="https://unpkg.com/shufflejs" defer></script>
-    
-    <script src="main.js" defer></script>
-    <link href="style.css" rel="stylesheet">
-  </head>
-  <body>
-    <div id="start-screen" >
-      <h1 id="title-banner">Joke Invaders</h1>
-      <p id="lore">
-	It's a War against Aliens!
-	<br>
-	Enemy is using novel tactic by using jokes as a disguise to distract you from attacking!
-	<br>
-	Keep the jokes away from our planet because THAT'S NOT FUNNY 😾
-	<br>
-	P.S.: Be serious because I AIN'T JOKING AROUND!
-      </p>
-      <button id="start-button">Start Game</button>
 
-      <div id="difficulty-selector">
-	<select id="difficulty-level">
-          <option value="E" default>Difficulty: Easy</option>
-	  <option value="M">Difficulty: Medium</option>
-	  <option value="H">Difficulty: Hard</option>
-	</select>
-	<label for="difficulty-level">🞃</label>
-      </div>
-    </div>
-    <div id="game">
-      <div id="playfield">
-	<div id="jokes">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Joke Invaders</title>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js" defer></script>
+	<script src="https://unpkg.com/shufflejs@6/dist/shuffle.js" defer></script>
+	<script src="jokes_dataset.js"></script>
+	<script src="main.js" defer></script>
+	<link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div id="start-screen">
+		<h1 id="title-banner">Joke Invaders</h1>
+		<p id="lore">
+			It's a War against Aliens!
+			<br>
+			Enemy is using novel tactic by using jokes as a disguise to distract you from attacking!
+			<br>
+			Keep the jokes away from our planet because THAT'S NOT FUNNY 😾
+			<br>
+			P.S.: Be serious because I AIN'T JOKING AROUND!
+		</p>
+		<button id="start-button">Start Game</button>
+
+		<div id="difficulty-selector">
+			<select id="difficulty-level">
+				<option value="E" default>Difficulty: Easy</option>
+				<option value="M">Difficulty: Medium</option>
+				<option value="H">Difficulty: Hard</option>
+			</select>
+			<label for="difficulty-level">🞃</label>
+		</div>
 	</div>
-	<hr id="game-over-line">
-      </div>
-      <div id="controls">
-	<input type="text" id="typing-field">
-	<span id="score-field">0</span>
-	<span id="target-field"></span>
-      </div>
-    </div>
-    <div id="game-over-screen">
-      <h1 id="game-over-text">Game Over</h1>
-      <h2 id="game-over-display-score">Score: <span id="game-over-score-field"></span></h2>
-      <button id="restart-button">Play again</button>
-      <button id="start-screen-button">Start Screen</button>      
-    </div>
-    
-    <audio id="audioPlayer" src="" autoplay></audio>
-    <button id="playPauseBtn" class="on"></button>
-    <button id="soundEffectBtn" class="on"></button>    
-    <audio id="audioGameOver" src="assets/music/game-over-arcade.mp3" ></audio>
-    <audio id="audioWrongInput" src="assets/music/wrong-input.wav"></audio>
+	<div id="game">
+		<div id="playfield">
+			<div id="jokes">
+			</div>
+			<hr id="game-over-line">
+		</div>
+		<div id="controls">
+			<input type="text" id="typing-field">
+			<span id="score-field">0</span>
+			<span id="target-field"></span>
+		</div>
+	</div>
+	<div id="game-over-screen">
+		<h1 id="game-over-text">Game Over</h1>
+		<h2 id="game-over-display-score">Score: <span id="game-over-score-field"></span></h2>
+		<button id="restart-button">Play again</button>
+		<button id="start-screen-button">Start Screen</button>
+	</div>
 
-    
-  </body>
+	<audio id="audioPlayer" src="" autoplay></audio>
+	<button id="playPauseBtn" class="on"></button>
+	<button id="soundEffectBtn" class="on"></button>
+	<audio id="audioGameOver" src="assets/music/game-over-arcade.mp3"></audio>
+	<audio id="audioWrongInput" src="assets/music/wrong-input.wav"></audio>
+
+
+</body>
+
 </html>
